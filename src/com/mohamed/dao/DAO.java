@@ -24,6 +24,7 @@ public class DAO {
 	}
 	
 	//get all the tasks
+	@SuppressWarnings("unchecked")
 	public List<Task> getAllTasks() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.getTransaction().begin();

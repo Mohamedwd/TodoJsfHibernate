@@ -14,8 +14,12 @@ h1,h2,h3,h4,h5,h6,p{margin: 0}
 	width: 90%;
 	margin: 0 auto;
 	overflow: auto;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 .ui-datatable thead th,
 .ui-datatable tbody td,
@@ -69,22 +73,32 @@ header .logo{
 header .addTask{
 	width: 50%;
 	float: right;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
-	justify-content: flex-end
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end
 }
 #addTaskFrm input[type="submit"]{
 	background: #28a745 !important;
 	color: #fff !important;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
 	transition: all .2s ease-in-out;
 	text-shadow: none !important;
-	box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	        box-shadow: none !important;
 	padding: 9px 20px;
 	border: none !important;
 	cursor: pointer
 }
 #addTaskFrm input[type="submit"]:hover{
-	box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	        box-shadow: none !important;
 	background: #208838 !important;
 }
 #addTaskFrm\:taskInput{

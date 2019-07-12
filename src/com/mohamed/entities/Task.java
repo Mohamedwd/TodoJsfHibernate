@@ -1,7 +1,5 @@
 package com.mohamed.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tasks")
-public class Task implements Serializable{
+public class Task{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

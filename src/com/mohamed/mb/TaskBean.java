@@ -6,11 +6,11 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import com.mohamed.dao.DAO;
 import com.mohamed.entities.Task;
 
+@SuppressWarnings("serial")
 @ManagedBean(name="task")
 @SessionScoped
 public class TaskBean implements Serializable{
