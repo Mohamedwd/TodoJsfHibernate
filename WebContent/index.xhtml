@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" > 
+	<h:head>
+		<!-- loading css files -->
+		<h:outputStylesheet library="css" name="todo.css" />
+	</h:head>
+	<h:body>
+	
+		<!-- Header -->
+		<header>
+			<div class="container">
+				<div class="logo">
+					<h3><i class="fas fa-clipboard-check fa-lg"></i> ToDo App</h3>
+				</div>
+				<div class="addTask">
+					<h:form id="addTaskFrm">
+						<h:inputText id="taskInput" a:placeholder="add your task" value="#{task.taskName}"
+							required="true" requiredMessage="Please Enter a task"/>
+						<h:selectOneMenu id="menuItems" value="#{task.taskSeverity}" required="true"
+							requiredMessage="Please select the task severity">
+							<f:selectItem itemLabel="Severity" itemValue="" />
+				            <f:selectItems value="#{task.getItemValues()}"/>
+				        </h:selectOneMenu>
+				        <h:commandButton id="addBtn" value="Add" action="#{task.addTask()}">
+				        	<f:ajax execute="taskInput addTaskFrm" render="displayTasksFrm errorMsg addTaskFrm" />
+				        </h:commandButton>
+					</h:form>
+				</div>
+			</div>
+		</header>
+		<!-- End Header -->
+		
+		<!-- Error Messages -->
+		<div class="errorMsgs" >
+			<h:form id="errorMsg"><h:messages /></h:form>
+		</div>
+		<!-- END -->
+		
+		<!-- todoList -->
+		<h:form id="displayTasksFrm">
+			<h:panelGroup layout="block" styleClass="todoList">
+				<p:dataTable value="#{task.allTasks()}" var="t">
+				    <f:facet name="header">
+				    	Stuff I'm going to do
+				    </f:facet>
+				    <p:column headerText="Task">
+				        <h:outputText value="#{t.taskName}" />
+				    </p:column>
+				    <p:column headerText="Severity" width="200" styleClass="textCenter">
+				        <h:outputText value="#{t.taskSeverity}" styleClass="severity_#{t.taskSeverity}"/>
+				    </p:column>
+				    <p:column headerText="Edit" width="45" styleClass="textCenter">
+				        <h:commandLink action="#{task.editTask(t)}">
+				        	<i class="fas fa-edit"></i>
+				        </h:commandLink>
+				    </p:column>
+				    <p:column headerText="Delete" width="45" styleClass="textCenter">
+				        <h:commandLink id="deleteBtn" styleClass="deleteBtn" action="#{task.deleteTask(t.id)}">
+				        	<i class="fas fa-trash-alt"></i>
+				        	<f:ajax execute="deleteBtn" render="displayTasksFrm"/>
+				        </h:commandLink>
+				    </p:column>
+				</p:dataTable>
+			</h:panelGroup>
+		</h:form>
+		<!-- End todoList -->
+		
+		<!-- Footer -->
+		<footer>
+			<p>Copyrights 2019 - Mohamed Ibrahem</p>
+		</footer>
+		<!-- End Footer -->
+		
+		<!-- loading js files -->
+		<h:outputScript library="js" name="all.min.js" />
+	</h:body>
+</html>
